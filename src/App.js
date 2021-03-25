@@ -1,56 +1,97 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import styled from 'styled-components';
+import About from './components/About';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 import './App.css';
+import image from './images/pixlr-bg-result.png';
 
 function App() {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date');
-      const newDate = await res.text();
-      setDate(newDate);
+
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+    padding: 10px 35px;
+    font-size: 1.25rem;
+    transition: .3s;
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.7rem;
+    &:hover {
+      background: white;
+      color: #4f4f4f;
     }
-    getDate();
-  }, []);
+  `;
+
   return (
-    <main>
-      <h1>Create React App + Go API</h1>
-      <h2>
-        Deployed with{' '}
-        <a
-          href="https://vercel.com/docs"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Vercel
-        </a>
-        !
-      </h2>
-      <p>
-        <a
-          href="https://github.com/vercel/vercel/tree/master/examples/create-react-app"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          This project
-        </a>{' '}
-        was bootstrapped with{' '}
-        <a href="https://facebook.github.io/create-react-app/">
-          Create React App
-        </a>{' '}
-        and contains three directories, <code>/public</code> for static assets,{' '}
-        <code>/src</code> for components and content, and <code>/api</code>{' '}
-        which contains a serverless <a href="https://golang.org/">Go</a>{' '}
-        function. See{' '}
-        <a href="/api/date">
-          <code>api/date</code> for the Date API with Go
-        </a>
-        .
-      </p>
-      <br />
-      <h2>The date according to Go is:</h2>
-      <p>{date ? date : 'Loading date...'}</p>
-    </main>
+    <div className="App">
+      <header>
+        <div className="logo">
+            <img src={image} alt='tree-logo'/>
+        </div>
+        <nav>
+          <Router>
+            <StyledLink to="/">Home</StyledLink>
+            <StyledLink to="/about">About Me</StyledLink>
+            <StyledLink to="/projects">My Projects</StyledLink>
+            <StyledLink to="/contact">Contact</StyledLink>
+            <Switch>
+              <Route path='/about'>
+                <About />
+              </Route>
+              <Route path='/projects'>
+                <Projects />
+              </Route>
+              <Route path='/contact'>
+                <Contact />
+              </Route>
+              <Route exact path='/'>
+                
+              </Route>
+            </Switch>
+          </Router>
+        </nav>
+      </header>
+    <section className="splash">
+        {/* <!-- splash image with text --> */}
+        <h1>Nicholas Samples</h1>
+        <h3>Full-Stack Web Development</h3>
+    </section>
+    <section className="services">
+        <h2>Service offerings:</h2>
+        <div className="container">
+            <div className="grid">
+                {/* <!-- image --> */}
+                <h4>Full-Stack Developer</h4>
+                <p>Construction of complete projects, both front-end and back-end.  Customize every aspect!</p>
+            </div>
+            <div className="grid">
+                {/* <!-- image --> */}
+                <h4>Front-end/UX Design</h4>
+                <p>Develop your app or site with the needs of the end-user in mind!  Fully responsive and accessible to all.</p>
+            </div>
+            <div className="grid">
+                {/* <!-- image --> */}
+                <h4>Back-end/Server-side Construction</h4>
+                <p>Use the power of Javascript to make your app or website work for YOU, giving you the data you need easily and efficiently.</p>
+            </div>
+            <div className="grid">
+                {/* <!-- image --> */}
+                <h4>Node.JS</h4>
+                <p>The cutting edge of modern web development.  Fully experienced and ready to work for you!</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <h3>--- WANT TO KNOW MORE? ---</h3>
+        <nav className="social">
+            <a href="http://www.github.com/samplesn08">GitHub</a>
+            <a href="https://www.linkedin.com/in/nicholas-samples/">LinkedIn</a>
+            <a href="https://www.instagram.com/samplesn08/">Instagram</a>
+        </nav>
+        <p>Copyright &copy; Nicholas Samples 2021</p>
+    </footer>
+    </div>
   );
 }
 
