@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import About from './components/About';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
+
 import './App.css';
 import image from './images/pixlr-bg-result.png';
 
@@ -33,17 +31,17 @@ function App() {
           <Router>
             <StyledLink to="/">Home</StyledLink>
             <StyledLink to="/about">About Me</StyledLink>
-            <StyledLink to="/projects">My Projects</StyledLink>
+            <a href="https://web-module-project-async-redux-qbe58z19u-samplesn08.vercel.app/">Deployed Redux Project</a>
             <StyledLink to="/contact">Contact</StyledLink>
             <Switch>
               <Route path='/about'>
-                <About />
+                
               </Route>
               <Route path='/projects'>
-                <Projects />
+                
               </Route>
               <Route path='/contact'>
-                <Contact />
+                
               </Route>
               <Route exact path='/'>
                 
